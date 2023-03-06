@@ -46,6 +46,7 @@ export default function createWidget(container: HTMLElement, options?: Turnstile
     iframe.id = fullWidgetId;
     iframe.tabIndex = resolvedOptions.tabindex || 0;
     iframe.title = "Widget containing a Cloudflare security challenge";
+    iframe.allow = "cross-origin-isolated";
     container.appendChild(iframe);
     if(flagInputElement && (resolvedOptions["response-field"] ?? true)) {
         createInputElement(resolvedOptions["response-field-name"] ?? defaultInputName, `${fullWidgetId}_response`, container);
