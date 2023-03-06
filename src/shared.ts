@@ -4,7 +4,7 @@ export function format(a: string, b: Array<string>) {
 };
 
 
-const prefix = "[Cloudflare Turnstile]"
+const prefix = "[Cloudflare Turnstile]";
 
 export function issueWarning(message: string) {
     console.warn(prefix, message);
