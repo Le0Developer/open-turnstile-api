@@ -42,7 +42,7 @@ export default function createWidget(container: HTMLElement, options?: Turnstile
     iframe.style.display = "none";
     iframe.style.border = "none";
     iframe.style.overflow = "none";
-    iframe.src = `${iframeOrigin}/cdn-cgi/challenge-platform/${iframeSauce}turnstile/if/ov2/av0/${widgetId}/${resolvedOptions.sitekey}/${resolvedOptions.theme || "auto"}/${resolvedOptions.size || "normal"}`;
+    iframe.src = `${iframeOrigin}/cdn-cgi/challenge-platform/${iframeSauce}turnstile/if/ov2/av0/${widgetId}/${resolvedOptions.sitekey}/${resolvedOptions.theme}/${resolvedOptions.size}`;
     iframe.id = fullWidgetId;
     iframe.tabIndex = resolvedOptions.tabindex || 0;
     iframe.title = "Widget containing a Cloudflare security challenge";
