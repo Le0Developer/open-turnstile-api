@@ -6,6 +6,8 @@ if(flagLegacySitekey)
     rawQuery += ",input#%_legacy_response"
 if(flagCompatRecaptcha)
     rawQuery += ",input#%_g_response";
+if(flagCompatHCaptcha)
+    rawQuery += ",input#%_h_response";
 
 export function setWidgetToken(widget: Widget, token: string) {
     widget.token = token;

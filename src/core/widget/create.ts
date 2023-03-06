@@ -1,7 +1,7 @@
 import { TurnstileOptions } from "turnstile-types";
 import { widgets, WidgetState } from ".";
-import { compatRecaptchaInputName, defaultInputName, fullWidgetIdPrefix, iframeOrigin, iframeSauce, legacyInputName } from "../../const";
-import { reCaptchaCompatEnabled } from "../compat";
+import { compatHCaptchaInputName, compatRecaptchaInputName, defaultInputName, fullWidgetIdPrefix, iframeOrigin, iframeSauce, legacyInputName } from "../../const";
+import { compatibilityMode, CompatibilityMode } from "../compat";
 import { parseImplicitOptions } from "../implicit";
 import { isLegacySitekey } from "../legacy";
 import defaultOptions from "../options/default";
@@ -55,8 +55,11 @@ export default function createWidget(container: HTMLElement, options?: Turnstile
             createInputElement(legacyInputName, `${fullWidgetId}_legacy_response`, container);
         }
     }
-    if(flagCompatRecaptcha && reCaptchaCompatEnabled) {
+    if(flagCompatRecaptcha && compatibilityMode === CompatibilityMode.ReCAPTCHA) {
         createInputElement(compatRecaptchaInputName, `${fullWidgetId}_g_response`, container);
+    }
+    if(flagCompatHCaptcha && compatibilityMode === CompatibilityMode.HCaptcha) {
+        createInputElement(compatHCaptchaInputName, `${fullWidgetId}_h_response`, container);
     }
 
     return widgetId;

@@ -1,6 +1,6 @@
 
 import api from "./api";
-import { runRecaptchaCompat } from "./core/compat";
+import { runHCaptchaCompat, runRecaptchaCompat } from "./core/compat";
 import { getRuntimeFlags } from "./core/flags";
 import { disableImplicitAutorun, registerReadyCallback } from "./core/loading";
 import { turnstileMessageHandler } from "./core/comms";
@@ -27,6 +27,8 @@ if(flagQueryParameters) {
         if(compat) {
             if(flagCompatRecaptcha && compat.toLowerCase() === "recaptcha") {
                 runRecaptchaCompat(api);
+            } else if(flagCompatHCaptcha && compat.toLowerCase() === "hcaptcha") {
+                runHCaptchaCompat(api);
             } else {
                 issueWarning(`Unknown value for api.js?compat: "${compat}", ignoring`);
             }

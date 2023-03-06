@@ -1,15 +1,34 @@
 import { TurnstileObject } from "turnstile-types";
-import { issueWarning } from "../shared";
+import { format, issueWarning } from "../shared";
 
-export let reCaptchaCompatEnabled = false;
+export enum CompatibilityMode {
+    None,
+    ReCAPTCHA,
+    HCaptcha,
+}
 
+export let compatibilityMode = CompatibilityMode.None;
+
+const success = "Compatibility layer enabled";
+const error = "% is already defined. The compatibility layer will not be enabled";
 export function runRecaptchaCompat(api: TurnstileObject) {
     const wnd = window as any;
     if(wnd.grecaptcha) {
-        issueWarning("grecaptcha is already defined. The compatibility layer will not be enabled");
+        issueWarning(format(error, ["grecaptcha"]));
     } else {
-        issueWarning("Compatibility layer enabled");
+        issueWarning(success);
         wnd.grecaptcha = api;
-        reCaptchaCompatEnabled = true;
+        compatibilityMode = CompatibilityMode.ReCAPTCHA;
+    }
+}
+
+export function runHCaptchaCompat(api: TurnstileObject) {
+    const wnd = window as any;
+    if(wnd.hcaptcha) {
+        issueWarning(format(error, ["hcaptcha"]));
+    } else {
+        issueWarning(success);
+        wnd.hcaptcha = api;
+        compatibilityMode = CompatibilityMode.HCaptcha;
     }
 }

@@ -12,7 +12,8 @@ export default {
     flagApiContainerAllowSelector: "true", // allow passing query selector as container (requires Element to work)
     flagApiContainerAllowElement: "true", // allow passing HTMLElement as container
     flagApiContainerAllowNothing: "true", // allow passing nothing as container (uses first currently rendered widget)
-    flagCompatRecaptcha: "true", // true recaptcha compatibility code
+    flagCompatRecaptcha: "true", // recaptcha compatibility code
+    flagCompatHCaptcha: "false", // NOT STANDARD - hcaptcha compatibility code
     flagImplicitRendering: "true", // enable implicit rendering
     flagInputElement: "true", // enable input element code
     flagLegacySitekey: "true", // enable legacy sitekey code (adds legacy input name)

@@ -14,6 +14,7 @@ declare global {
     var flagApiContainerAllowElement: boolean;
     var flagApiContainerAllowNothing: boolean;
     var flagCompatRecaptcha: boolean;
+    var flagCompatHCaptcha: boolean;
     var flagImplicitRendering: boolean;
     var flagInputElement: boolean;
     var flagLegacySitekey: boolean;
