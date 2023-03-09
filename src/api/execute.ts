@@ -1,7 +1,7 @@
 import { TurnstileOptions } from "turnstile-types";
 import { fullWidgetIdPrefix } from "../const";
 import { widgets, WidgetState } from "../core/widget";
-import flushWidgetQueue from "../core/widget/queue";
+import { EXECUTE_EVENT, flushWidgetQueue } from "../core/widget/queue";
 import { showWidget } from "../core/widget/ui";
 import { throwError } from "../shared";
 import render from "./render";
@@ -20,9 +20,7 @@ export default function execute(container: ContainerLike, options: TurnstileOpti
     if(widget.token)
         return widget.options?.callback(widget.token);
         
-    widget.queue.push({
-        event: "execute"
-    });
+    widget.queue.push(EXECUTE_EVENT);
 
     const iframe = document.getElementById(fullWidgetIdPrefix + widget.id) as HTMLIFrameElement;
     if(!iframe) throwError(`Widget ${widget.id} to execute was not found.`);

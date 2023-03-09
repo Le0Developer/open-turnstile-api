@@ -1,6 +1,6 @@
 import { getCurrentUrl } from "../core/url";
 import { Widget, WidgetState } from "../core/widget";
-import flushWidgetQueue from "../core/widget/queue";
+import { flushWidgetQueue } from "../core/widget/queue";
 import { RequestExtraParametersTurnstileMessage } from "./types";
 
 export default function handleRequestExtraParams(_: RequestExtraParametersTurnstileMessage, widget: Widget, iframe: HTMLIFrameElement) {

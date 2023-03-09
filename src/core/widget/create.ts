@@ -8,6 +8,7 @@ import defaultOptions from "../options/default";
 import validateOptions from "../options/validation";
 import { removeWidget } from "./data";
 import { fullWidgetIdToWidgetId, generateWidgetId } from "./id";
+import { EXECUTE_EVENT } from "./queue";
 
 export default function createWidget(container: HTMLElement, options?: TurnstileOptions) {
     const implicitOptions = flagImplicitRendering ? parseImplicitOptions(container) : {} as TurnstileOptions;
@@ -25,7 +26,7 @@ export default function createWidget(container: HTMLElement, options?: Turnstile
         id: widgetId,
         state: WidgetState.Loading,
         options: resolvedOptions,
-        queue: resolvedOptions.execution === "render" ? [{ event: "execute" }] : [],
+        queue: resolvedOptions.execution === "render" ? [EXECUTE_EVENT] : [],
         token: "",
     };
     const fullWidgetId = fullWidgetIdPrefix + widgetId;
