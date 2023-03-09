@@ -1,5 +1,5 @@
 import { TurnstileOptions } from "turnstile-types";
-import { compatibilityMode, CompatibilityMode } from "./compat";
+import { compatibilityId } from "./compat";
 import createWidget from "./widget/create";
 
 const callback = (object: any, value: string, field: string) => object[field] = window[value];
@@ -31,10 +31,8 @@ export function parseImplicitOptions(element: HTMLElement): TurnstileOptions {
 
 export function runImplicitRendering() {
     let query = ".cf-turnstile,.cf-challenge";
-    if(flagCompatRecaptcha && compatibilityMode === CompatibilityMode.ReCAPTCHA)
-        query += ",.g-recaptcha";
-    if(flagCompatHCaptcha && compatibilityMode === CompatibilityMode.HCaptcha)
-        query += ",.h-recaptcha";
+    if((flagCompatRecaptcha || flagCompatHCaptcha) && compatibilityId)
+        query += `,.${compatibilityId}-recaptcha`;
     const matches = document.querySelectorAll(query) as NodeListOf<HTMLElement>;
     matches.forEach((element) => createWidget(element));
 }
