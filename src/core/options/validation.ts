@@ -24,7 +24,7 @@ const validators = flagValidation ? {
     action: checkRegexFactory(/^[0-9a-z_-]{0,32}$/i),
     cData: checkRegexFactory(/^[0-9a-z_-]{0,255}$/i),
     theme: checkIncludesFactory(["auto", "dark", "light"]),
-    language: checkRegexFactory(/^auto|[a-z]{2}(-[A-Z]{2})?$/),
+    language: checkRegexFactory(/^(auto|[a-z]{2}(-[A-Z]{2})?)$/),
     // tabindex: () => // there is no tabindex validation
     // "response-field": checkIncludesFactory([true, false]), // no validation
     // "response-field-name": () => // no validation
